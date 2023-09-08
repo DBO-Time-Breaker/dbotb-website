@@ -5,7 +5,8 @@ module Web
   
       def index
         @account = Account.new(
-          email: ''
+          email: '',
+          mallpoints: 0
         )
       end
     
@@ -13,7 +14,8 @@ module Web
         @account = Account.new(
           email: account_params[:email],
           Username: account_params[:Username],
-          Password_hash: Digest::MD5.hexdigest(account_params[:password])
+          Password_hash: Digest::MD5.hexdigest(account_params[:password]),
+          mallpoints: 0
         )
     
         if @account.save
