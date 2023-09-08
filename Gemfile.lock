@@ -81,6 +81,8 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    composite_primary_keys (14.0.6)
+      activerecord (~> 7.0.2)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
@@ -192,8 +194,6 @@ GEM
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     stringio (3.0.8)
-    tailwindcss-rails (2.0.30-x64-mingw-ucrt)
-      railties (>= 6.0.0)
     thor (1.2.2)
     timeout (0.4.0)
     turbo-rails (1.4.0)
@@ -227,6 +227,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
+  composite_primary_keys
   debug
   dotenv-rails
   importmap-rails
@@ -237,7 +238,6 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   stimulus-rails
-  tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
   web-console

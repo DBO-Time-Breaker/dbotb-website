@@ -12,6 +12,7 @@ gem "sprockets-rails"
 # Use mysql2 as the database for Active Record
 gem "mysql2"
 gem 'dotenv-rails'
+gem 'composite_primary_keys'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
