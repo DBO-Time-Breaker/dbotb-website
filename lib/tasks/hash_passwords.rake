@@ -1,6 +1,6 @@
 require 'digest/md5'
 
-desc "Anonymise db dumps"
+desc "Hash users passwords to md5"
 task hash_passwords: :environment do |_task, _args|
   begin
     hash_users_passwords
