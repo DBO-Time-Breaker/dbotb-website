@@ -13,6 +13,8 @@ gem "sprockets-rails"
 gem "mysql2"
 gem 'dotenv-rails'
 gem 'composite_primary_keys'
+gem 'virtus', '1.0.5'
+gem "valid_email2"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
