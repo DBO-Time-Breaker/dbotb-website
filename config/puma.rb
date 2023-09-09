@@ -39,5 +39,12 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 #
 # preload_app!
 
+if ENV['RAILS_ENV'] == 'production'
+  # Production SSL settings
+  ssl_bind '0.0.0.0', '443',
+           cert: ENV["SSL_CERT_PATH"],
+           key: ENV["SSL_KEY_PATH"]
+end
+
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
