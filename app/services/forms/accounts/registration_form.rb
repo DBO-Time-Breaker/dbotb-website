@@ -34,6 +34,7 @@ module Forms
         account.email = email.downcase
         account.Username = username
         account.Password_hash = encrypted_password
+        account.del_char_pw = encrypted_password
         account.save
       end
   
