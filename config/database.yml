@@ -1,17 +1,65 @@
 default: &default
   adapter: mysql2
   encoding: utf8
+  database: dbo_website
+  username: <%= ENV.fetch("DATABASE_USERNAME") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
+  port: <%= ENV.fetch("DATABASE_PORT") %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+accounts: &accounts
+  adapter: mysql2
+  encoding: utf8
   database: dbo_acc
   username: <%= ENV.fetch("DATABASE_USERNAME") %>
   password: <%= ENV.fetch("DATABASE_PASSWORD") %>
   port: <%= ENV.fetch("DATABASE_PORT") %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+characters: &characters
+  adapter: mysql2
+  encoding: utf8
+  database: dbo_char
+  username: <%= ENV.fetch("DATABASE_USERNAME") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
+  port: <%= ENV.fetch("DATABASE_PORT") %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+logs: &logs
+  adapter: mysql2
+  encoding: utf8
+  database: dbo_log
+  username: <%= ENV.fetch("DATABASE_USERNAME") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
+  port: <%= ENV.fetch("DATABASE_PORT") %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
 development:
-  <<: *default
+  primary:
+    <<: *default
+  accounts:
+    <<: *accounts
+  characters:
+    <<: *characters
+  logs:
+    <<: *logs
 
 test:
-  <<: *default
+  primary:
+    <<: *default
+  accounts:
+    <<: *accounts
+  characters:
+    <<: *characters
+  logs:
+    <<: *logs
 
 production:
-  <<: *default
+  primary:
+    <<: *default
+  accounts:
+    <<: *accounts
+  characters:
+    <<: *characters
+  logs:
+    <<: *logs

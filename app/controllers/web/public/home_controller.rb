@@ -1,8 +1,7 @@
 module Web
   module Public
     class HomeController < ApplicationController
-      require 'digest/md5'
-  
+
       def index
         @account = ::Forms::Accounts::RegistrationForm.new
       end
