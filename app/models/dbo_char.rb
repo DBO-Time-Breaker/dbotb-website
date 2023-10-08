@@ -1,0 +1,5 @@
+class DboChar < ActiveRecord::Base
+  self.abstract_class = true
+
+  connects_to database: { writing: :characters, reading: :characters }
+end
