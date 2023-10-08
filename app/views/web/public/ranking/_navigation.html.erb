@@ -1,0 +1,22 @@
+<% 
+  current_page_classes = 'bg-sky-600 text-white'
+  default_page_classes = 'bg-white-600 text-black border-sky-600'
+%>
+
+<div class="flex justify-center items-center pb-8">
+  <%= link_to 'Players',
+              ranking_players_path,
+              class: "#{ current_page?(ranking_players_path) ? current_page_classes : default_page_classes } inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600" %>
+
+  <%= link_to 'Budokai Solo',
+              ranking_budokai_solo_path,
+              class: "#{ current_page?(ranking_budokai_solo_path) ? current_page_classes : default_page_classes } ml-6 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600" %>
+  
+  <%= link_to 'Budokai Party',
+              ranking_budokai_party_path,
+              class: "#{ current_page?(ranking_budokai_party_path) ? current_page_classes : default_page_classes } ml-6 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600" %>
+
+  <%= link_to 'Guilds',
+              ranking_guilds_path,
+              class: "#{ current_page?(ranking_guilds_path) ? current_page_classes : default_page_classes } ml-6 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600" %>
+</div>

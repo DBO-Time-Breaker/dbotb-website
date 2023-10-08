@@ -4,4 +4,10 @@ module ApplicationHelper
       "#{title} | DBO Time Breaker"
     end
   end
+
+  def scripts(&block)
+    content_for(:extra_javascripts) do
+      capture(&block)
+    end
+  end
 end

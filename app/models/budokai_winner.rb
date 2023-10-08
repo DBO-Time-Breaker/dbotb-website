@@ -5,11 +5,22 @@ class BudokaiWinner < DboLog
   belongs_to :winner_4, class_name: 'Character', foreign_key: :WinnerCharID4, primary_key: :CharID
   belongs_to :winner_5, class_name: 'Character', foreign_key: :WinnerCharID5, primary_key: :CharID
 
+  scope :solo_match, -> { where(MatchType: 0) }
+  scope :party_match, -> { where(MatchType: 1) }
+
+  def tournment_label
+    adult? ? 'Adult' : 'Kid'
+  end
+
   def adult?
-    Type
+    self.Type
   end
 
   def party_match?
-    MatchType
+    self.MatchType
+  end
+
+  def date
+    self.Date.strftime('%Y/%m/%d')
   end
 end
