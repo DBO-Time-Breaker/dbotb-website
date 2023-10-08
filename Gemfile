@@ -16,6 +16,7 @@ gem 'composite_primary_keys'
 gem 'virtus', '1.0.5'
 gem "valid_email2"
 gem 'will_paginate', '~> 4.0'
+gem 'sorcery', '~> 0.16.5'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
