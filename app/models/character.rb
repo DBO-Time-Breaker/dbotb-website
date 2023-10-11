@@ -1,5 +1,10 @@
 class Character < DboChar
   self.primary_key = :CharID
+
+  attribute :Race, ActiveModel::Type::Integer.new
+  attribute :Class, ActiveModel::Type::Integer.new
+  attribute :Gender, ActiveModel::Type::Integer.new
+
   belongs_to :account, foreign_key: :AccountID
 
   scope :not_gm, -> { where(GameMaster: 0) }
