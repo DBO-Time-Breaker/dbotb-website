@@ -1,6 +1,7 @@
 module Web
   module Public
     class AccountsController < ApplicationController
+      before_action :require_anonymous_user, only: [:index, :login_submit]
 
       def index
         @account = ::Forms::Accounts::LoginForm.new
@@ -11,9 +12,9 @@ module Web
     
         if @account.call
           auto_login(@account.account)
-          redirect_to root_path
+          redirect_to dashboard_path
         else
-          redirect_to root_path, alert: @account.errors.full_messages.join('<br>')
+          redirect_to account_login_path, alert: @account.errors.full_messages.join('<br>')
         end
       end
 

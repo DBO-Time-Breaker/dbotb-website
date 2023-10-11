@@ -1,0 +1,42 @@
+<% title "Dashboard" %>
+
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="flow-root text-center">
+    <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Characters</h2>
+  </div>
+
+    <div class="mx-4 my-16 overflow-x-auto sm:mx-6 lg:mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Rank</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Level</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Race</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Class</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Guild</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Time Played</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <% @characters.each do |char| %>
+              <tr>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= char.GameMaster ? '-' : char.rank %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= char.CharName %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= char.Level %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= char.Race.titleize %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <%= char.Class.titleize %><br>
+                  <%= image_tag "classes/#{ char.Class }.png", alt: char.Class.titleize, class: 'inline' %>
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= char.GuildName %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= char.play_time %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
