@@ -1,0 +1,15 @@
+<% 
+  current_page_classes = 'bg-sky-600 text-white'
+  default_page_classes = 'bg-white-600 text-black border-sky-600'
+%>
+
+<div class="flex justify-center items-center pb-8">
+  <%= link_to 'Personal Information',
+              settings_path,
+              class: "#{ current_page?(settings_path) ? current_page_classes : default_page_classes } inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600" %>
+
+  <%= link_to 'Change Password',
+              settings_change_password_path,
+              class: "#{ current_page?(settings_change_password_path) ? current_page_classes : default_page_classes } ml-6 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600" %>
+
+</div>

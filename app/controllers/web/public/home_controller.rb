@@ -1,6 +1,7 @@
 module Web
   module Public
     class HomeController < ApplicationController
+      before_action :require_anonymous_user
 
       def index
         @account = ::Forms::Accounts::RegistrationForm.new
