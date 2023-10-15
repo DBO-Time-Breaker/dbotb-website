@@ -20,6 +20,12 @@ Rails.application.routes.draw do
     scope module: :accounts do
       # Dashboard
       get '/dashboard', to: "dashboard#index", as: :dashboard
+
+      # Settings
+      get '/settings', to: "settings#index", as: :settings
+      put '/settings/update_personal_informations', to: "settings#update_personal_informations", as: :settings_update_personal_informations
+      get '/settings/change_password', to: "settings#change_password", as: :settings_change_password
+      put '/settings/update_password', to: "settings#update_password", as: :settings_update_password
     end
   end
 end

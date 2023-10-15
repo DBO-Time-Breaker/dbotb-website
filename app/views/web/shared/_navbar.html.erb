@@ -68,6 +68,10 @@
                 <a href="#" class="block px-4 py-2 text-sm text-sky-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                 <a href="#" class="block px-4 py-2 text-sm text-sky-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
               <% end %>
+              <%= link_to "Settings",
+                  settings_path,
+                  class: "block px-4 py-2 text-sm" %>
+
               <%= link_to "Sign out",
                   account_logout_path,
                   class: "block px-4 py-2 text-sm text-red-700" %>
