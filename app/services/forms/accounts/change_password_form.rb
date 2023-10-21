@@ -43,6 +43,7 @@ module Forms
 
       def update_password
         account.Password_hash = encrypted_password(password)
+        account.del_char_pw = encrypted_password(password)
 
         account.save!
       end

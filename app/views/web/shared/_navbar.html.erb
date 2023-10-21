@@ -58,8 +58,9 @@
           <!-- Profile dropdown -->
           <div class="relative ml-3">
             <div>
-              <button type="button" class="js-user_btn rounded-md px-3 py-2 text-sm font-medium text-sky-300 hover:bg-sky-700 hover:text-white" id="user-menu-button">
-                <%= current_user.Username.titleize %>
+              <button type="button" class="js-user_btn flex justify-center items-center rounded-md px-3 py-2 text-sm font-medium text-sky-300 hover:bg-sky-700 hover:text-white" id="user-menu-button">
+                <%= image_tag "gm.png", alt: 'GM', class: 'inline w-5 mr-1' if current_user.admin? %>
+                <span class="inline-block"><%= current_user.Username.titleize %></span>
               </button>
             </div>
 
