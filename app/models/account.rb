@@ -3,6 +3,8 @@ class Account < DboAcc
   attr_reader :password
 
   self.primary_key = :AccountID
+  attribute :isGm, ActiveModel::Type::Integer.new
+
   validates :email, length: {maximum: 80}
   validates :Username, presence: true, uniqueness: true, length: {maximum: 16}
 
@@ -14,5 +16,9 @@ class Account < DboAcc
 
   def valid_password?(password)
     password.eql?(self.Password_hash)
+  end
+
+  def admin_level?
+    admin? && isGm.eql?(10)
   end
 end

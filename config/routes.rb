@@ -27,5 +27,16 @@ Rails.application.routes.draw do
       get '/settings/change_password', to: "settings#change_password", as: :settings_change_password
       put '/settings/update_password', to: "settings#update_password", as: :settings_update_password
     end
+
+    scope :admins, as: :admin, module: :admins do
+      # Dashboard
+      get '/', to: "dashboard#index", as: :dashboard
+  
+      # Accounts
+      get '/accounts', to: "accounts#index", as: :accounts
+  
+      # Characters
+      get '/characters', to: "characters#index", as: :characters
+    end
   end
 end

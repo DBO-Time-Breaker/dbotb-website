@@ -1,0 +1,116 @@
+<% 
+  current_page_classes = 'bg-sky-950 text-white'
+  default_page_classes = 'text-sky-300 hover:bg-sky-700 hover:text-white'
+%>
+
+<nav class="bg-sky-800">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button type="button" class="js-mobile_menu_btn morelative inline-flex items-center justify-center rounded-md p-2 text-sky-400 hover:bg-sky-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+          <span class="absolute -inset-0.5"></span>
+          <span class="sr-only">Open main menu</span>
+          <!--
+            Icon when menu is closed.
+
+            Menu open: "hidden", Menu closed: "block"
+          -->
+          <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <!--
+            Icon when menu is open.
+
+            Menu open: "block", Menu closed: "hidden"
+          -->
+          <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <%= link_to "Dashboard",
+                  admin_dashboard_path,
+                  class: "rounded-md px-3 py-2 text-sm font-medium #{ current_page?(admin_dashboard_path) ? current_page_classes : default_page_classes }" %>
+
+            <%= link_to "Accounts",
+                  admin_accounts_path,
+                  class: "rounded-md px-3 py-2 text-sm font-medium #{ request.path.include?('admins/accounts') ? current_page_classes : default_page_classes }" %>
+
+            <%= link_to "Characters",
+                  admin_characters_path,
+                  class: "rounded-md px-3 py-2 text-sm font-medium #{ request.path.include?('admins/characters') ? current_page_classes : default_page_classes }" %>
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <!-- Profile dropdown -->
+        <div class="relative ml-3">
+          <div>
+            <button type="button" class="js-user_btn flex justify-center items-center rounded-md px-3 py-2 text-sm font-medium text-sky-300 hover:bg-sky-700 hover:text-white" id="user-menu-button">
+              <%= image_tag "gm.png", alt: 'GM', class: 'inline w-5 mr-1' if current_user.admin? %>
+              <span class="inline-block"><%= current_user.Username.titleize %></span>
+            </button>
+          </div>
+
+          <div class="hidden js-user_drowpdown absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+            <% if false %>
+              <a href="#" class="block px-4 py-2 text-sm text-sky-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+              <a href="#" class="block px-4 py-2 text-sm text-sky-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+            <% end %>
+            <%= link_to "Player Dashboard",
+                dashboard_path,
+                class: "block px-4 py-2 text-sm" %>
+
+            <%= link_to "Sign out",
+                account_logout_path,
+                class: "block px-4 py-2 text-sm text-red-700" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class="js-mobile_menu sm:hidden hidden">
+    <div class="space-y-1 px-2 pb-3 pt-2">
+      <%= link_to "Dashboard",
+                  admin_dashboard_path,
+                  class: "block rounded-md px-3 py-2 text-base font-medium #{ current_page?(admin_dashboard_path) ? current_page_classes : default_page_classes }" %>
+
+       <%= link_to "Accounts",
+                  admin_accounts_path,
+                  class: "block rounded-md px-3 py-2 text-base font-medium #{ request.path.include?('admins/accounts') ? current_page_classes : default_page_classes }" %>
+
+        <%= link_to "Characters",
+                  admin_characters_path,
+                  class: "block rounded-md px-3 py-2 text-base font-medium #{ request.path.include?('admins/characters') ? current_page_classes : default_page_classes }" %>
+    </div>
+  </div>
+</nav>
+
+<%= scripts do %>
+  <script type="text/javascript">
+    const mobileMenuButton = document.querySelector('.js-mobile_menu_btn');
+    const mobileMenu = document.querySelector('.js-mobile_menu');
+    const userButton = document.querySelector('.js-user_btn');
+    const userDropdown = document.querySelector('.js-user_drowpdown');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    userButton.addEventListener('click', () => {
+      userDropdown.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.js-user_btn')) {
+        userDropdown.classList.add('hidden');
+      }
+    });
+  </script>
+<% end %>

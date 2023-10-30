@@ -13,6 +13,17 @@ class ApplicationController < ActionController::Base
     false
   end
 
+  def require_admin
+    return true if current_user&.admin_level?
+
+    if request.xhr?
+      render js: "window.location.replace('#{account_login_path}');"
+    else
+      redirect_to account_login_path
+    end
+    false
+  end
+
   def require_anonymous_user
     return unless current_user
 
