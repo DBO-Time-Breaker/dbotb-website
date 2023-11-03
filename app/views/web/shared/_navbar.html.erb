@@ -69,6 +69,10 @@
                 <a href="#" class="block px-4 py-2 text-sm text-sky-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                 <a href="#" class="block px-4 py-2 text-sm text-sky-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
               <% end %>
+              <%= link_to "Admin Dashboard",
+                  admin_dashboard_path,
+                  class: "block px-4 py-2 text-sm" if current_user.admin_level? %>
+
               <%= link_to "Settings",
                   settings_path,
                   class: "block px-4 py-2 text-sm" %>

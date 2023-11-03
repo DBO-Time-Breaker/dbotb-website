@@ -2,8 +2,23 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def pa
+    params.to_unsafe_h
+  end
+
   def require_account
     return true if current_user
+
+    if request.xhr?
+      render js: "window.location.replace('#{account_login_path}');"
+    else
+      redirect_to account_login_path
+    end
+    false
+  end
+
+  def require_admin
+    return true if current_user&.admin_level?
 
     if request.xhr?
       render js: "window.location.replace('#{account_login_path}');"
