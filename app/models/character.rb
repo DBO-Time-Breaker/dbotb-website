@@ -4,10 +4,20 @@ class Character < DboChar
   attribute :Race, ActiveModel::Type::Integer.new
   attribute :Class, ActiveModel::Type::Integer.new
   attribute :Gender, ActiveModel::Type::Integer.new
+  attribute :GameMaster, ActiveModel::Type::Integer.new
 
   belongs_to :account, foreign_key: :AccountID
 
   scope :not_gm, -> { where(GameMaster: 0) }
+
+  enum GameMaster: {
+    player: 0,
+    early_access: 6,
+    community_manager: 7,
+    team_leader: 8,
+    game_master: 9,
+    admin: 10
+  }, _prefix: :gm
 
   enum Race: {
     human: 0,

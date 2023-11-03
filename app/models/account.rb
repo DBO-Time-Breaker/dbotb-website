@@ -10,6 +10,15 @@ class Account < DboAcc
 
   has_many :characters, foreign_key: :AccountID
 
+  enum isGm: {
+    player: 0,
+    early_access: 6,
+    community_manager: 7,
+    team_leader: 8,
+    game_master: 9,
+    admin: 10
+  }, _prefix: :isGm
+
   def self.find_by_id(id)
     Account.find_by(AccountID: id)
   end
@@ -19,6 +28,6 @@ class Account < DboAcc
   end
 
   def admin_level?
-    admin? && isGm.eql?(10)
+    admin? && isGm_admin?
   end
 end
