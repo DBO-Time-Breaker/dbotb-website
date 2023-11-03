@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   
       # Accounts
       get '/accounts', to: "accounts#index", as: :accounts
+      get '/accounts/:account_id/add_cash_points', to: "accounts#add_cash_points", as: :accounts_add_cash_points
+      put '/accounts/:account_id/add_cash_points', to: "accounts#add_cash_points_submit", as: :accounts_add_cash_points_submit
   
       # Characters
       get '/characters', to: "characters#index", as: :characters

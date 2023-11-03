@@ -5,6 +5,20 @@ module Web
         @accounts = query_accounts.accounts
       end
 
+      def add_cash_points
+        @add_cash_points_form = Forms::Admins::Accounts::AddCashPointsForm.new
+      end
+
+      def add_cash_points_submit
+        @add_cash_points_form = Forms::Admins::Accounts::AddCashPointsForm.new(add_cash_points_params)
+
+        if @add_cash_points_form.call
+          redirect_to admins_accounts_path, notice: 'Cash points added successfully!'
+        else
+          redirect_to admins_accounts_add_cash_points_path, alert: @add_cash_points_form.errors.full_messages.join('<br>')
+        end
+      end
+
       private
 
       def query_accounts
@@ -22,6 +36,15 @@ module Web
           gm_level: params[:search][:gm_level],
         ) if params[:search].present?
         prms
+      end
+
+      def add_cash_points_params
+        {
+          account_id: pa[:account_id],
+          cash_points: pa[:form][:cash_points]
+          reason: pa[:form][:reason],
+          admin: current_user
+        }
       end
     end
   end
