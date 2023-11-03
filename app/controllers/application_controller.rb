@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def pa
+    params.to_unsafe_h
+  end
+
   def require_account
     return true if current_user
 
