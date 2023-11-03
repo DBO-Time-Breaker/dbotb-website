@@ -1,6 +1,8 @@
 module Web
   module Admins
     class AccountsController < BaseController
+      before_action :load_account, only: [:add_cash_points]
+
       def index
         @accounts = query_accounts.accounts
       end
@@ -13,13 +15,17 @@ module Web
         @add_cash_points_form = Forms::Admins::Accounts::AddCashPointsForm.new(add_cash_points_params)
 
         if @add_cash_points_form.call
-          redirect_to admins_accounts_path, notice: 'Cash points added successfully!'
+          redirect_to admin_accounts_path, notice: 'Cash points added successfully!'
         else
-          redirect_to admins_accounts_add_cash_points_path, alert: @add_cash_points_form.errors.full_messages.join('<br>')
+          redirect_to admin_accounts_add_cash_points_path, alert: @add_cash_points_form.errors.full_messages.join('<br>')
         end
       end
 
       private
+
+      def load_account
+        @account = Account.find_by_id(params[:account_id])
+      end
 
       def query_accounts
         @query_accounts ||= Query::Admins::Accounts.new(accounts_params)
@@ -41,7 +47,7 @@ module Web
       def add_cash_points_params
         {
           account_id: pa[:account_id],
-          cash_points: pa[:form][:cash_points]
+          cash_points: pa[:form][:cash_points],
           reason: pa[:form][:reason],
           admin: current_user
         }

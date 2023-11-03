@@ -81,9 +81,16 @@
                   <%= account.acc_status.titleize %>
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= account.isGm.titleize %></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= account.mallpoints %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <% if account.active? %>
+                    <%= link_to account.mallpoints, admin_accounts_add_cash_points_path(account_id: account.AccountID), class: 'underline' %>
+                  <% else %>
+                    <%= account.mallpoints %>
+                  <% end %>
+                </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= account.WaguCoins %></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <%= link_to "Add Cash", admin_accounts_add_cash_points_path(account_id: account.AccountID), class: 'flex justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm font-semibold leading-6 cursor-pointer text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600' if account.active? %>
                 </td>
               </tr>
             <% end %>

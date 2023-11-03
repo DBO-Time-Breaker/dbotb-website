@@ -14,6 +14,7 @@ module Forms
         validates :account_id, :reason, :cash_points, :admin, presence: true
         validates :cash_points, numericality: { greater_than: 0 }
         validate :account_exists
+        validate :account_active
         validate :admin_is_gm
     
         def call
@@ -29,7 +30,7 @@ module Forms
         private
   
         def create_log
-          AddAddCashPointsLog.create!(
+          AddCashPointsLog.create!(
             account: account,
             admin: admin,
             reason: reason,
@@ -50,6 +51,12 @@ module Forms
           return if account.present?
     
           errors.add(:base, 'Account not found')
+        end
+
+        def account_active
+          return if account&.active?
+
+          errors.add(:base, 'Account is not active')
         end
 
         def admin_is_gm
