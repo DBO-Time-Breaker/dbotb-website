@@ -19,6 +19,12 @@ class Account < DboAcc
     admin: 10
   }, _prefix: :isGm
 
+  enum acc_status: {
+    pending: 'pending',
+    block: 'block',
+    active: 'active'
+  }
+
   def self.find_by_id(id)
     Account.find_by(AccountID: id)
   end
