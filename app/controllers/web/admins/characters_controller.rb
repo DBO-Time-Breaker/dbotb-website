@@ -18,7 +18,9 @@ module Web
           id: params[:search][:id],
           name: params[:search][:name],
           game_class: params[:search][:game_class],
-          guild: params[:search][:guild]
+          guild: params[:search][:guild],
+          gm_level: params[:search][:gm_level],
+          account: params[:search][:account]
         ) if params[:search].present?
         prms
       end

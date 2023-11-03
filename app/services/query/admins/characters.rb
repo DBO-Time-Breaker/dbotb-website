@@ -11,6 +11,8 @@ module Query
       attribute :name, String
       attribute :game_class, Integer
       attribute :guild, String
+      attribute :gm_level, Integer
+      attribute :account, String
 
       def characters
         @characters ||= resultset
@@ -23,6 +25,8 @@ module Query
         filter_by_name
         filter_by_game_class
         filter_by_guild
+        filter_by_gm_level
+        filter_by_account
         sort
       end
 
@@ -51,6 +55,18 @@ module Query
         @rs = rs.where('GuildName LIKE ?', "%#{guild}%")
       end
 
+      def filter_by_gm_level
+        return if gm_level.blank?
+
+        @rs = rs.where(GameMaster: gm_level)
+      end
+
+      def filter_by_account
+        return if account.blank?
+
+        account_id = Account.where('Username LIKE ?', "%#{account}%").pluck(:AccountID)
+        @rs = rs.where(AccountID: account_id)
+      end
       
       def sort
         rs.order('CharID ASC')

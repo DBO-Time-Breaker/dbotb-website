@@ -6,7 +6,7 @@ class Character < DboChar
   attribute :Gender, ActiveModel::Type::Integer.new
   attribute :GameMaster, ActiveModel::Type::Integer.new
 
-  belongs_to :account, foreign_key: :AccountID
+  belongs_to :account, class_name: 'Account', foreign_key: :AccountID, primary_key: :AccountID
 
   scope :not_gm, -> { where(GameMaster: 0) }
 
