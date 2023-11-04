@@ -36,4 +36,8 @@ class Account < DboAcc
   def admin_level?
     admin? && isGm_admin?
   end
+
+  def can_be_banned?
+    active? && isGm_player?
+  end
 end

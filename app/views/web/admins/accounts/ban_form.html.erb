@@ -1,0 +1,63 @@
+<% title "#{@account.Username} - Ban" %>
+
+<div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-cover bg-no-repeat bg-bottom bg-opacity-40">
+  <div class="sm:mx-auto sm:w-full text-center">
+    <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <%= @account.Username %>
+    </h2>
+    <h3 class="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+      Ban
+    </h3>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <%= form_for @ban_form, as: :form, url: admin_accounts_ban_form_submit_path, html: { method: :post, class: 'space-y-6' } do |f| %>
+
+      <div>
+        <label htmlFor="permanent" class="block text-sm font-medium leading-6 text-gray-900">
+          Permanent
+        </label>
+        <div class="mt-2">
+          <%= f.check_box :permanent, class: 'js-ban_permanent', id: 'permanent' %>
+        </div>
+      </div>
+
+      <div class="js-duration_container">
+        <label htmlFor="duration" class="block text-sm font-medium leading-6 text-gray-900">
+          Duration
+        </label>
+        <div class="mt-2">
+          <%= f.number_field :duration, class: 'block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6', id: 'duration' %>
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="reason" class="block text-sm font-medium leading-6 text-gray-900">
+          Reason
+        </label>
+        <div class="mt-2">
+          <%= f.text_area :reason, class: 'block w-full outline-none rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6', id: 'reason', required: true %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.submit 'Save', class: 'flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm font-semibold leading-6 cursor-pointer text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= scripts do %>
+  <script type="text/javascript">
+    const ban_permanent = document.querySelector('.js-ban_permanent');
+    const duration_container = document.querySelector('.js-duration_container');
+
+    ban_permanent.addEventListener('change', (event) => {
+      if (event.target.checked) {
+        duration_container.classList.add('hidden');
+      } else {
+        duration_container.classList.remove('hidden');
+      }
+    });
+  </script>
+<% end %>

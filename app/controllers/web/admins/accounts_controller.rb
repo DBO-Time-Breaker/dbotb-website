@@ -1,7 +1,7 @@
 module Web
   module Admins
     class AccountsController < BaseController
-      before_action :load_account, only: [:add_cash_points]
+      before_action :load_account, only: [:add_cash_points, :ban_form]
 
       def index
         @accounts = query_accounts.accounts
@@ -18,6 +18,20 @@ module Web
           redirect_to admin_accounts_path, notice: 'Cash points added successfully!'
         else
           redirect_to admin_accounts_add_cash_points_path, alert: @add_cash_points_form.errors.full_messages.join('<br>')
+        end
+      end
+
+      def ban_form
+        @ban_form = Forms::Admins::Accounts::BanForm.new
+      end
+
+      def ban_form_submit
+        @ban_form = Forms::Admins::Accounts::BanForm.new(ban_form_params)
+
+        if @ban_form.call
+          redirect_to admin_accounts_path, notice: 'Account banned successfully!'
+        else
+          redirect_to admin_accounts_ban_path, alert: @ban_form.errors.full_messages.join('<br>')
         end
       end
 
@@ -48,6 +62,16 @@ module Web
         {
           account_id: pa[:account_id],
           cash_points: pa[:form][:cash_points],
+          reason: pa[:form][:reason],
+          admin: current_user
+        }
+      end
+
+      def ban_form_params
+        {
+          account_id: pa[:account_id],
+          permanent: pa[:form][:permanent],
+          duration: pa[:form][:duration],
           reason: pa[:form][:reason],
           admin: current_user
         }
