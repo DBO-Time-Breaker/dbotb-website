@@ -91,6 +91,8 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= account.WaguCoins %></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                   <%= link_to "Add Cash", admin_accounts_add_cash_points_path(account_id: account.AccountID), class: 'flex justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm font-semibold leading-6 cursor-pointer text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600' if account.active? %>
+
+                   <%= link_to "Ban", admin_accounts_ban_form_path(account_id: account.AccountID), class: 'flex justify-center rounded-md bg-red-600 px-3 py-1.5 mt-2 text-sm font-semibold leading-6 cursor-pointer text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600' if account.can_be_banned? %>
                 </td>
               </tr>
             <% end %>
