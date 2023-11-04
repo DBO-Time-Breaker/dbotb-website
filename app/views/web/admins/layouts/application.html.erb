@@ -15,12 +15,7 @@
   <body class="h-full relative">
     <%= render 'web/admins/layouts/navbar' %>
 
-    <% if notice %>
-     <p class="bg-green-500 text-white text-center p-4 text-lg border-solid border-white absolute top-0 left-0 w-full"><%= notice.html_safe %></p>
-    <% end %>
-    <% if alert %>
-     <p class="bg-red-500 text-white text-center p-4 text-lg border-solid border-white absolute top-0 left-0 w-full"><%= alert.html_safe %></p>
-    <% end %>
+   <%= render 'web/shared/flash_messages', flash: flash %>
 
     <div class="mx-auto container py-8">
       <%= yield %>

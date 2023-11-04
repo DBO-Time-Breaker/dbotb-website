@@ -1,0 +1,25 @@
+<% flash.each do |k, v| %>
+  <% next if k.blank? %>
+
+  <div class="overflow-hidden">
+    <p class="js-flash_message bg-<%= flash_color(k) %>-500 text-white text-center p-4 text-lg border-solid border-white w-full transition-transform ease-in-out duration-300">
+      <%= v.html_safe %>
+    </p>
+  </div>
+<% end %>
+
+<%= scripts do %>
+  <script type="text/javascript">
+    const flashMessages = document.querySelectorAll('.js-flash_message');
+
+    flashMessages.forEach((flashMessage) => {
+      setTimeout(() => {
+        flashMessage.classList.add('-translate-y-full');
+
+        setTimeout(() => {
+          flashMessage.parentNode.remove();
+        }, 300);
+      }, 3000);
+    });
+  </script>
+<% end %>
