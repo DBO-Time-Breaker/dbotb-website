@@ -7,6 +7,8 @@ class BudokaiWinner < DboLog
 
   scope :solo_match, -> { where(MatchType: 0) }
   scope :party_match, -> { where(MatchType: 1) }
+  scope :adult, -> { where(Type: 1) }
+  scope :kid, -> { where(Type: 0) }
 
   def tournment_label
     adult? ? 'Adult' : 'Kid'
