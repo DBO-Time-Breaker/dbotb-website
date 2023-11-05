@@ -1,0 +1,2 @@
+class Item < DboChar
+end

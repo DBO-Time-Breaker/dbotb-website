@@ -1,1 +1,86 @@
 <% title "Dashboard" %>
+
+<ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
+  <li class="overflow-hidden rounded-xl border border-gray-200">
+    <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
+      <div class="text-md font-medium leading-6 text-gray-900">General</div>
+    </div>
+    <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Online Players</dt>
+        <dd class="text-green-600"><%= @player_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Accounts</dt>
+        <dd class="text-gray-700"><%= @accounts_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Characters</dt>
+        <dd class="text-gray-700"><%= @characters_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Guilds</dt>
+        <dd class="text-gray-700"><%= @guilds_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Items</dt>
+        <dd class="text-gray-700"><%= @items_count %></dd>
+      </div>
+    </dl>
+  </li>
+  <li class="overflow-hidden rounded-xl border border-gray-200">
+    <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
+      <div class="text-md font-medium leading-6 text-gray-900">Management</div>
+    </div>
+    <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Admins</dt>
+        <dd class="text-gray-700"><%= @admins_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Game Masters</dt>
+        <dd class="text-gray-700"><%= @gms_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Team Leaders</dt>
+        <dd class="text-gray-700"><%= @tls_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Community Managers</dt>
+        <dd class="text-gray-700"><%= @cms_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Players</dt>
+        <dd class="text-gray-700"><%= @players_count %></dd>
+      </div>
+    </dl>
+  </li>
+
+  <li class="overflow-hidden rounded-xl border border-gray-200">
+    <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
+      <div class="text-md font-medium leading-6 text-gray-900">Budokais</div>
+    </div>
+    <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Total</dt>
+        <dd class="text-green-600"><%= @budokais_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Solo Adult</dt>
+        <dd class="text-gray-700"><%= @budokai_solo_adult_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Party Adult</dt>
+        <dd class="text-gray-700"><%= @budokai_party_adult_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Solo Kid</dt>
+        <dd class="text-gray-700"><%= @budokai_solo_kid_count %></dd>
+      </div>
+      <div class="flex justify-between gap-x-4 py-3">
+        <dt class="text-gray-500">Party Kid</dt>
+        <dd class="text-gray-700"><%= @budokai_party_kid_count %></dd>
+      </div>
+    </dl>
+  </li>
+</ul>
