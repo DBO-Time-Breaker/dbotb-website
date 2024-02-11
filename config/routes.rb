@@ -41,6 +41,14 @@ Rails.application.routes.draw do
   
       # Characters
       get '/characters', to: "characters#index", as: :characters
+
+      # Download Links
+      get '/download_links', to: "download_links#index", as: :download_links
+      get '/download_links/new', to: "download_links#new", as: :download_links_new
+      post '/download_links/create', to: "download_links#create", as: :download_links_create
+      get '/download_links/:id/edit', to: "download_links#edit", as: :download_links_edit
+      put '/download_links/:id/update', to: "download_links#update", as: :download_links_update
+      delete '/download_links/:id/destroy', to: "download_links#destroy", as: :download_links_destroy
     end
   end
 end
