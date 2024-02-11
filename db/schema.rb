@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_03_185402) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_11_143346) do
   create_table "add_cash_points_logs", charset: "utf8mb3", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "reason", null: false
     t.integer "cash_points", null: false
     t.integer "admin_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "download_links", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "provider", null: false
+    t.string "link", null: false
+    t.boolean "active", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
